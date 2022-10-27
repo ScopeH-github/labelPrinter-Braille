@@ -1,9 +1,15 @@
 import SwiftUI
 
-public var dataTexts: [String] = []
+public struct DataStruct: Identifiable {
+    public var id = UUID()
+    public var text: String
+}
+
+public var dataTexts: [DataStruct] = []
 
 public func loadTextFromCSV() {
-    let path = Bundle.main.path(forResource: "dataFile", ofType: "csv")!
+    // TODO: Fix the Error
+    let path = Bundle.main.path(forResource: "dataFile", ofType: "csv")
     parseCSV(at: URL(fileURLWithPath: path))
 }
 
@@ -14,7 +20,8 @@ private func parseCSV(at filePath: URL) {
         
         if let dataArray = dataEncoded?.components(separatedBy: ",") {
             for item in dataArray {
-                dataTexts.append(item)
+                var structedItem = DataStruct(text: item)
+                dataTexts.append(structedItem)
             }
         }
     } catch {
@@ -26,7 +33,7 @@ public func createCSV() {
     var commaText = ""
     
     for data in dataTexts {
-        commaText += (data + ",")
+        commaText += (data.text + ",")
     }
     if !commaText.isEmpty {
         commaText.removeLast()

@@ -2,7 +2,20 @@ import SwiftUI
 
 struct MakeListView: View {
     var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        NavigationView {
+            VStack {
+                List(dataTexts) { data in 
+                    Button (action: {
+                        MakeView(text: data.text)
+                    }) {
+                        Text(data.text)
+                    }
+                }.onAppear(perform: {
+                    loadTextFromCSV()
+                })
+            }
+            .navigationTitle("라벨 리스트")
+        }
     }
 }
 

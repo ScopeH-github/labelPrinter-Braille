@@ -4,7 +4,7 @@ import SwiftUI
 import KorToBraille                    // Using External Package
 
 struct MakeView: View {
-    @State private var text = ""
+    @State public var text = ""
     @State private var korBraille = ""
     @State private var brailleCount = 0
     var body: some View {
@@ -94,7 +94,7 @@ struct MakeView: View {
     }
     
     func saveData(text: String) {
-        dataTexts.append(text)
+        dataTexts.append(DataStruct(text: text))
         createCSV()
     }
     
