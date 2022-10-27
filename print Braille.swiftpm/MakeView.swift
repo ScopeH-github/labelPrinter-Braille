@@ -1,7 +1,9 @@
-import SwiftUI
-import KorToBraille
+/// App Layout
 
-struct ContentView: View {
+import SwiftUI
+import KorToBraille                    // Using External Package
+
+struct MakeView: View {
     @State private var text = ""
     @State private var korBraille = ""
     @State private var brailleCount = 0
@@ -12,7 +14,6 @@ struct ContentView: View {
                     Section {
                         HStack {
                             TextBox(text: $text, korBraille: $korBraille)
-                            
                             Button(action: {
                                 text = ""
                             }) {
@@ -23,7 +24,7 @@ struct ContentView: View {
                     } header: {
                         Text("라벨 텍스트")
                     } footer: {
-                        Text("(한글과 숫자로만 적어주세요)")
+                        Text("한글과 숫자로만 적어주세요")
                             .font(.callout)
                     }
                     .headerProminence(.increased)
@@ -58,7 +59,7 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         Button(action: {
-                            
+                            saveData(text: text)
                         }) {
                             Text("저장")
                                 .padding()
@@ -92,6 +93,11 @@ struct ContentView: View {
         .navigationViewStyle(.stack)
     }
     
+    func saveData(text: String) {
+        dataTexts.append(text)
+        createCSV()
+    }
+    
     /// for DEBUG
     func printData(_ braille: String, text: String) {
         var brailleData = [Int]()
@@ -109,6 +115,8 @@ struct ContentView: View {
     }
 }
 
+
+// SwiftUI doesn't clearable Textfield
 struct TextBox: View {
     @Binding var text: String
     @Binding var korBraille: String
