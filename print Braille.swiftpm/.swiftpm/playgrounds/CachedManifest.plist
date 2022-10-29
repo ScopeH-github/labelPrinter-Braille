@@ -30,13 +30,14 @@
 		XSwidGFyZ2V0cyI6WyJBcHBNb2R1bGUiXSwidHlwZSI6eyJleGVjdXRhYmxl
 		IjpudWxsfX1dLCJ0YXJnZXRNYXAiOnsiQXBwTW9kdWxlIjp7ImRlcGVuZGVu
 		Y2llcyI6W3sicHJvZHVjdCI6WyJLb3JUb0JyYWlsbGUiLCJLb3JUb0JyYWls
-		bGUiLG51bGxdfV0sImV4Y2x1ZGUiOltdLCJuYW1lIjoiQXBwTW9kdWxlIiwi
-		cGF0aCI6Ii4iLCJyZXNvdXJjZXMiOltdLCJzZXR0aW5ncyI6W10sInR5cGUi
-		OiJleGVjdXRhYmxlIn19LCJ0YXJnZXRzIjpbeyJkZXBlbmRlbmNpZXMiOlt7
-		InByb2R1Y3QiOlsiS29yVG9CcmFpbGxlIiwiS29yVG9CcmFpbGxlIixudWxs
-		XX1dLCJleGNsdWRlIjpbXSwibmFtZSI6IkFwcE1vZHVsZSIsInBhdGgiOiIu
-		IiwicmVzb3VyY2VzIjpbXSwic2V0dGluZ3MiOltdLCJ0eXBlIjoiZXhlY3V0
-		YWJsZSJ9XSwidG9vbHNWZXJzaW9uIjp7Il92ZXJzaW9uIjoiNS42LjAifX0=
+		bGUiLG51bGwsbnVsbF19XSwiZXhjbHVkZSI6W10sIm5hbWUiOiJBcHBNb2R1
+		bGUiLCJwYXRoIjoiLiIsInJlc291cmNlcyI6W10sInNldHRpbmdzIjpbXSwi
+		dHlwZSI6ImV4ZWN1dGFibGUifX0sInRhcmdldHMiOlt7ImRlcGVuZGVuY2ll
+		cyI6W3sicHJvZHVjdCI6WyJLb3JUb0JyYWlsbGUiLCJLb3JUb0JyYWlsbGUi
+		LG51bGwsbnVsbF19XSwiZXhjbHVkZSI6W10sIm5hbWUiOiJBcHBNb2R1bGUi
+		LCJwYXRoIjoiLiIsInJlc291cmNlcyI6W10sInNldHRpbmdzIjpbXSwidHlw
+		ZSI6ImV4ZWN1dGFibGUifV0sInRvb2xzVmVyc2lvbiI6eyJfdmVyc2lvbiI6
+		IjUuNi4wIn19
 		</data>
 		<key>manifestHash</key>
 		<data>
@@ -45,7 +46,7 @@
 		<key>schemaVersion</key>
 		<integer>4</integer>
 		<key>swiftPMVersionString</key>
-		<string>5.6.0-dev</string>
+		<string>5.7.1</string>
 	</dict>
 </dict>
 </plist>

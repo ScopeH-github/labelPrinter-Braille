@@ -2,6 +2,7 @@
 /// To Arduino
 
 import Foundation
+import KorToBraille  
 
 let brailleList = " ⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"
 
@@ -23,4 +24,13 @@ public func brailleToInt(_ braille: Character) -> Int {
     }
     
     return number
+}
+
+
+public func transKorBraille(_ text: String) -> String {
+    var resultText = KorToBraille.korTranslate(text)
+    if resultText != "" && resultText.last != " " {
+        resultText.removeLast()
+    }
+    return resultText
 }

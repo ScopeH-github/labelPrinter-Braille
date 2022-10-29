@@ -8,9 +8,9 @@ public struct DataStruct: Identifiable {
 public var dataTexts: [DataStruct] = []
 
 public func loadTextFromCSV() {
-    // TODO: Fix the Error
-    let path = Bundle.main.path(forResource: "dataFile", ofType: "csv")
-    parseCSV(at: URL(fileURLWithPath: path))
+    if let path = Bundle.main.path(forResource: "dataFile", ofType: "csv") {
+        parseCSV(at: URL(fileURLWithPath: path))
+    }
 }
 
 private func parseCSV(at filePath: URL) {
@@ -20,7 +20,7 @@ private func parseCSV(at filePath: URL) {
         
         if let dataArray = dataEncoded?.components(separatedBy: ",") {
             for item in dataArray {
-                var structedItem = DataStruct(text: item)
+                let structedItem = DataStruct(text: item)
                 dataTexts.append(structedItem)
             }
         }

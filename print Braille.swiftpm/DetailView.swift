@@ -89,7 +89,11 @@ struct MakeView: View {
                 .padding(.vertical)
             }
             .navigationTitle("라벨 만들기")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear(perform: {
+            korBraille = transKorBraille(text)
+        })
         .navigationViewStyle(.stack)
     }
     
@@ -109,7 +113,7 @@ struct MakeView: View {
             print("\(text): ", terminator: "")
             for i in brailleData {
                 print(i, terminator: " ")
-            }
+            }     
             print()
         }
     }
@@ -135,12 +139,10 @@ struct TextBox: View {
         .multilineTextAlignment(.center)
         .font(.title)
     }
-    
-    func transKorBraille(_ text: String) -> String {
-        var resultText = KorToBraille.korTranslate(text)
-        if resultText != "" && resultText.last != " " {
-            resultText.removeLast()
-        }
-        return resultText
+}
+
+struct MakeView_Previews: PreviewProvider {
+    static var previews: some View {
+        MakeView()
     }
 }
