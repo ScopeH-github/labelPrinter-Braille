@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct DataStruct: Identifiable {
+public struct DataStruct: Identifiable, Hashable {
     public var id = UUID()
     public var text: String
 }

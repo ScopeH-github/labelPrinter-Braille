@@ -32,7 +32,8 @@ let package = Package(
             ],
             capabilities: [
                 .bluetoothAlways(purposeString: "프린터를 찾아 연결하고 내용을 인쇄하는 데에 필요합니다.")
-            ]
+            ],
+            appCategory: .utilities
         )
     ],
     dependencies: [

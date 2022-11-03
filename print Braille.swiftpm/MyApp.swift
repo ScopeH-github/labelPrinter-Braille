@@ -4,7 +4,11 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            MakeListView()
+            MakeListView(datas: dataTexts)
+                .onAppear {
+                    loadTextFromCSV()
+                }
+                
         }
     }
 }

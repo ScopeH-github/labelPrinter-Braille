@@ -34,3 +34,4 @@ public func transKorBraille(_ text: String) -> String {
     }
     return resultText
 }
+

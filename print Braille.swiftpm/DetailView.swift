@@ -4,102 +4,111 @@ import SwiftUI
 import KorToBraille                    // Using External Package
 
 struct MakeView: View {
+    @State private var alertComponent: (String, String) = ("", "")
+    @State private var showingAlert = false
     @State public var text = ""
     @State private var korBraille = ""
     @State private var brailleCount = 0
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    Section {
-                        HStack {
-                            TextBox(text: $text, korBraille: $korBraille)
-                            Button(action: {
-                                text = ""
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    } header: {
-                        Text("라벨 텍스트")
-                    } footer: {
-                        Text("한글과 숫자로만 적어주세요")
-                            .font(.callout)
-                    }
-                    .headerProminence(.increased)
-                    Section {
-                        Text(korBraille)
-                            .multilineTextAlignment(.center)
-                            .font(.title)
-                            .onChange(of: korBraille) { braille in
-                                var text = braille
-                                if text != "" {
-                                    text.removeLast()
-                                }
-                                brailleCount = text.count
-                            }
-                    } header: {
-                        Text("점역 결과")
-                    } footer: {
-                        HStack{
-                            Spacer()
-                            Text("\(brailleCount) / 40")
-                                .multilineTextAlignment(.leading)
-                                .font(.callout)
-                                .lineLimit(nil)
-                        }
-                    }
-                    .headerProminence(.increased)
-                }
-                .padding(.vertical, 30)
-                
-                Spacer()
-                
-                VStack {
+        VStack {
+            List {
+                Section {
                     HStack {
+                        TextBox(text: $text, korBraille: $korBraille)
                         Button(action: {
-                            saveData(text: text)
+                            text = ""
                         }) {
-                            Text("저장")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .font(.title2)
+                            Image(systemName: "multiply.circle.fill")
+                                .foregroundColor(.secondary)
                         }
-                        .buttonStyle(.bordered)
-                        .padding(5)
-                        .padding(.leading)
-                        .padding(.bottom)
-                        
-                        Button(action: {
-                            printData(korBraille, text: text)
-                        }) {
-                            Text("인쇄")
-                                .font(.title2)
-                                .foregroundColor(.black)
-                                .padding()
-                                .frame(maxWidth: .infinity)
+                        .accessibilityLabel("모두 지우기")
+                        .accessibilityHint("텍스트를 모두 지우려면 이중 탭하십시오.")
+                
+                    }
+                } header: {
+                    Text("라벨 텍스트")
+                } footer: {
+                    Text("한글과 숫자로만 적어주세요")
+                        .font(.callout)
+                }
+                .headerProminence(.increased)
+                Section {
+                    Text(korBraille)
+                        .multilineTextAlignment(.center)
+                        .font(.title)
+                        .onChange(of: korBraille) { braille in
+                            var text = braille
+                            if text != "" {
+                                text.removeLast()
+                            }
+                            brailleCount = text.count
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding(5)
-                        .padding(.trailing)
-                        .padding(.bottom)
+                } header: {
+                    Text("점역 결과")
+                } footer: {
+                    HStack{
+                        Spacer()
+                        Text("\(brailleCount) / 40")
+                            .multilineTextAlignment(.leading)
+                            .font(.callout)
+                            .lineLimit(nil)
                     }
                 }
-                .padding(.vertical)
+                .headerProminence(.increased)
             }
-            .navigationTitle("라벨 만들기")
-            .navigationBarTitleDisplayMode(.inline)
-        }
+            .padding(.vertical, 30)
+            
+            Spacer()
+            
+            VStack {
+                HStack {
+                    Button(action: {
+                        saveData(text: text)
+                    }) {
+                        Text("저장")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .font(.title2)
+                    }
+                    .alert(alertComponent.0, isPresented: $showingAlert) {
+                        Button("OK") {}
+                    } message: {
+                        Text(alertComponent.1)
+                    }
+                    .buttonStyle(.bordered)
+                    .padding(5)
+                    .padding(.leading)
+                    .padding(.bottom)
+                    
+                    Button(action: {
+                        printData(korBraille, text: text)
+                    }) {
+                        Text("인쇄")
+                            .font(.title2)
+                            .foregroundColor(.black)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(5)
+                    .padding(.trailing)
+                    .padding(.bottom)
+                }
+            }
+            .padding(.vertical)
+    }
         .onAppear(perform: {
             korBraille = transKorBraille(text)
         })
-        .navigationViewStyle(.stack)
     }
     
     func saveData(text: String) {
-        dataTexts.append(DataStruct(text: text))
-        createCSV()
+        if !text.isEmpty {
+            dataTexts.append(DataStruct(text: text))
+            createCSV()
+            showingAlert = true
+            alertComponent = ("저장 완료", "저장이 완료되었습니다.")
+        }
     }
     
     /// for DEBUG
@@ -110,11 +119,11 @@ struct MakeView: View {
         }
         
         if text != "" {
+            print("\n")
             print("\(text): ", terminator: "")
             for i in brailleData {
                 print(i, terminator: " ")
-            }     
-            print()
+            }
         }
     }
 }
