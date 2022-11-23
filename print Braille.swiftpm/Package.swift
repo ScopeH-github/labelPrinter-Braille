@@ -30,9 +30,7 @@ let package = Package(
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
-            capabilities: [
-                .bluetoothAlways(purposeString: "프린터를 찾아 연결하고 내용을 인쇄하는 데에 필요합니다.")
-            ],
+            additionalInfoPlistContentFilePath: "MoreInfo.plist"
             appCategory: .utilities
         )
     ],
@@ -45,7 +43,8 @@ let package = Package(
             dependencies: [
                 .product(name: "KorToBraille", package: "KorToBraille")
             ],
-            path: "."
+            path: ".",
+            exclude: ["./MoreInfo.plist"]
         )
     ]
 )

@@ -5,6 +5,7 @@ import Foundation
 import KorToBraille  
 
 let brailleList = " ⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"
+let brfList = " a1b'k2l@cif/msp\"e3h9o6r^djg>ntq,*5<-u8v.%[$+x!&;:4\\0Z7(_?w]#y)="
 
 /// Braille to Binary Mechanism
 /// 0 * * 3
@@ -24,6 +25,18 @@ public func brailleToInt(_ braille: Character) -> Int {
     }
     
     return number
+}
+
+public func brailleToBRF(_ braille: Character) -> Character {
+    var brfChar = Character(" ")
+    for point in 0..<brailleList.count {
+        let index = brailleList.index(brailleList.startIndex, offsetBy: point)
+        if braille == brailleList[index] {
+            let brfIndex = brfList.index(brfList.startIndex, offsetBy: point)
+            brfChar = brfList[brfIndex]
+        }
+    }
+    return brfChar
 }
 
 

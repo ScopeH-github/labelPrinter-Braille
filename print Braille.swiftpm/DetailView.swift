@@ -113,17 +113,15 @@ struct MakeView: View {
     
     /// for DEBUG
     func printData(_ braille: String, text: String) {
-        var brailleData = [Int]()
+        var brailleData = String()
         for char in braille {
-            brailleData.append(brailleToInt(char))
+            brailleData.append(brailleToBRF(char))
         }
         
         if text != "" {
             print("\n")
             print("\(text): ", terminator: "")
-            for i in brailleData {
-                print(i, terminator: " ")
-            }
+            print(brailleData)
         }
     }
 }
