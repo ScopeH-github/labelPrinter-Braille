@@ -225,11 +225,10 @@
 			};
 			buildConfigurationList = E153AB7B292E4ED200BF6C14 /* Build configuration list for PBXProject "braillePrint" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				ko,
 			);
 			mainGroup = E153AB77292E4ED200BF6C14;
 			packageReferences = (
@@ -441,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"braillePrint/Preview Content\"";
+				DEVELOPMENT_TEAM = S7BTUCLAGX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = braillePrint/Info.plist;
@@ -472,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"braillePrint/Preview Content\"";
+				DEVELOPMENT_TEAM = S7BTUCLAGX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = braillePrint/Info.plist;

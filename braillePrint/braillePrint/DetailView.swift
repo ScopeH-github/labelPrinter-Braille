@@ -26,7 +26,7 @@ struct MakeView: View {
                 
                     }
                 } header: {
-                    Text("라벨 텍스트")
+                    Text("텍스트")
                 } footer: {
                     Text("한글과 숫자로만 적어주세요")
                         .font(.callout)
@@ -34,7 +34,7 @@ struct MakeView: View {
                 .headerProminence(.increased)
                 Section {
                     Text(korBraille)
-                        .multilineTextAlignment(.center)
+                        .multilineTextAlignment(.leading)
                         .font(.title)
                         .onChange(of: korBraille) { braille in
                             var text = braille
@@ -45,19 +45,11 @@ struct MakeView: View {
                         }
                 } header: {
                     Text("점역 결과")
-                } footer: {
-                    HStack{
-                        Spacer()
-                        Text("\(brailleCount) / 40")
-                            .multilineTextAlignment(.leading)
-                            .font(.callout)
-                            .lineLimit(nil)
-                    }
                 }
                 .headerProminence(.increased)
             }
             .padding(.vertical, 30)
-            
+                        
             Spacer()
             
             VStack {
@@ -83,7 +75,7 @@ struct MakeView: View {
                     Button(action: {
                         printData(korBraille, text: text)
                     }) {
-                        Text("인쇄")
+                        Text("내보내기")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -96,7 +88,10 @@ struct MakeView: View {
                 }
             }
             .padding(.vertical)
-    }
+            .scrollContentBackground(.hidden)
+            
+        }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear(perform: {
             korBraille = transKorBraille(text)
         })
@@ -111,7 +106,7 @@ struct MakeView: View {
         }
     }
     
-    /// for DEBUG
+    
     func printData(_ braille: String, text: String) {
         var brailleData = String()
         for char in braille {
@@ -119,10 +114,14 @@ struct MakeView: View {
         }
         
         if text != "" {
+            /*
             print("\n")
             print("\(text): ", terminator: "")
-            print(brailleData)
-            exportBRT(from: brailleData)
+            */ // for DEBUG
+            
+            let fileName = exportBRT(from: brailleData)
+            showingAlert = true
+            alertComponent = ("변환 완료", "\(fileName)\n파일 앱을 열어 저장된 파일을 확인할 수 있습니다.")
         }
     }
 }
@@ -144,7 +143,7 @@ struct TextBox: View {
                 .padding(.vertical)
                 .frame(minHeight: 100)
         }
-        .multilineTextAlignment(.center)
+        .multilineTextAlignment(.leading)
         .font(.title)
     }
 }

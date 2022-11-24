@@ -6,6 +6,8 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>Localizations native development region</key>
+	<string>Korea</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>

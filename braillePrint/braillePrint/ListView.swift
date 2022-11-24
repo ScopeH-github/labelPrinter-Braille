@@ -7,24 +7,27 @@ struct MakeListView: View {
             VStack {
                 List {
                     ForEach(datas, id: \.self) { data in
-                        NavigationLink(data.text, destination: MakeView(text: data.text))    
+                        NavigationLink(
+                            data.text, destination: MakeView(text: data.text)
+                                .navigationBarTitle("문구 만들기")
+                        )
                     }
                     .onDelete(perform: deleteItem)
                     .onMove(perform: moveItem)
                 
                 }
-                .onChange(of: dataTexts, perform: { _ in
-                    loadTextFromCSV()
-                    datas = dataTexts
-                })
                 .onAppear(perform: {
+                    datas.removeAll()
                     datas = loadTextFromCSV()
                 })
             }
             .navigationTitle("저장된 문구")
             .navigationBarItems(trailing: EditButton())
             .toolbar {
-                NavigationLink(destination: MakeView()) {
+                NavigationLink(
+                    destination: MakeView()
+                        .navigationBarTitle("문구 만들기")
+                ) {
                     Image(systemName: "square.and.pencil")
                 }
             }
@@ -34,11 +37,13 @@ struct MakeListView: View {
     func deleteItem(at offset: IndexSet) {
         datas.remove(atOffsets: offset)
         dataTexts.remove(atOffsets: offset)
+        createCSV()
     }
     
     func moveItem(from source: IndexSet, to destination: Int) {
         datas.move(fromOffsets: source, toOffset: destination)
         dataTexts.move(fromOffsets: source, toOffset: destination)
+        createCSV()
     }
 }
 
