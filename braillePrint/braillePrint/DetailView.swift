@@ -122,6 +122,7 @@ struct MakeView: View {
             print("\n")
             print("\(text): ", terminator: "")
             print(brailleData)
+            exportBRT(from: brailleData)
         }
     }
 }

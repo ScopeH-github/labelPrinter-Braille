@@ -1,5 +1,18 @@
 import SwiftUI
 
+public func exportBRT(from brtData: String) {
+
+    let fileManager = FileManager.default
+    let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+    let fileURL = documentsURL.appendingPathComponent("\(Date()).brt")
+
+    let textString = NSString(string: brtData)
+    
+    try? textString.write(to: fileURL, atomically: true, encoding: String.Encoding.ascii.rawValue)
+}
+
+
 public struct DataStruct: Identifiable, Hashable {
     public var id = UUID()
     public var text: String
@@ -7,13 +20,14 @@ public struct DataStruct: Identifiable, Hashable {
 
 public var dataTexts: [DataStruct] = []
 
-public func loadTextFromCSV() {
+public func loadTextFromCSV() -> [DataStruct] {
     if let path = Bundle.main.path(forResource: "dataFile", ofType: "csv") {
-        parseCSV(at: URL(fileURLWithPath: path))
+        parseCSV(at: URL(fileURLWithPath: path), datas: &dataTexts)
     }
+    return dataTexts
 }
 
-private func parseCSV(at filePath: URL) {
+private func parseCSV(at filePath: URL, datas: inout [DataStruct]) {
     do {
         let data = try Data(contentsOf: filePath)
         let dataEncoded = String(data: data, encoding: .utf8)
@@ -21,7 +35,7 @@ private func parseCSV(at filePath: URL) {
         if let dataArray = dataEncoded?.components(separatedBy: ",") {
             for item in dataArray {
                 let structedItem = DataStruct(text: item)
-                dataTexts.append(structedItem)
+                datas.append(structedItem)
             }
         }
     } catch {

@@ -18,8 +18,7 @@ struct MakeListView: View {
                     datas = dataTexts
                 })
                 .onAppear(perform: {
-                    loadTextFromCSV()
-                    datas = dataTexts
+                    datas = loadTextFromCSV()
                 })
             }
             .navigationTitle("저장된 문구")
