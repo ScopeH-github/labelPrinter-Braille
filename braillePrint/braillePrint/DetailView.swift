@@ -92,6 +92,9 @@ struct MakeView: View {
             
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .onTapGesture {
+            self.hideKeyboard()
+        }
         .onAppear(perform: {
             korBraille = transKorBraille(text)
         })
