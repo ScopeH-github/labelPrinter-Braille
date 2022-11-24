@@ -19,7 +19,7 @@ public func exportBRT(from brtData: String) -> String {
         return dateFormatter
     }
     
-    let fileName = "BR_\(dateFormatter.string(from: Date())).brt"   // FileName Format
+    let fileName = "BR_\(dateFormatter.string(from: Date())).brf"   // FileName Format
     let fileURL = docPath.appendingPathComponent(fileName)
 
     let textString = NSString(string: brtData)
