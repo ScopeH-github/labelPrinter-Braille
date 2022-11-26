@@ -122,7 +122,7 @@ struct MakeView: View {
             print("\(text): ", terminator: "")
             */ // for DEBUG
             
-            let fileName = exportBRT(from: brailleData)
+            let fileName = exportBRF(from: brailleData)
             showingAlert = true
             alertComponent = ("변환 완료", "\(fileName)\n파일 앱을 열어 저장된 파일을 확인할 수 있습니다.")
         }

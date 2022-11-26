@@ -11,7 +11,7 @@ let fManager = FileManager.default
 let docPath = fManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
 
-public func exportBRT(from brtData: String) -> String {
+public func exportBRF(from brfData: String) -> String {
     var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYYMMdd_HHmmss"    // FileName Format(Date)
@@ -22,7 +22,7 @@ public func exportBRT(from brtData: String) -> String {
     let fileName = "BR_\(dateFormatter.string(from: Date())).brf"   // FileName Format
     let fileURL = docPath.appendingPathComponent(fileName)
 
-    let textString = NSString(string: brtData)
+    let textString = NSString(string: brfData)
     
     try? textString.write(to: fileURL, atomically: true, encoding: String.Encoding.ascii.rawValue)
     return fileName
