@@ -5,4 +5,5 @@
 
 이 프로젝트는 Apple의 Xcode에서 열람이 가능하며, macOS 11 이상의 Mac 컴퓨터와 iOS/iPadOS 16 이상이 설치된 iPhone/iPad(실기로 테스트할 시)가 필요합니다.
 
+braillePrint.xcodeproj 파일을 열어
 프로젝트 개요란의 Signs 항목에서 Developer ID를 실행시키신 분의 Apple Developer ID로 바꿔주시기 바랍니다.
